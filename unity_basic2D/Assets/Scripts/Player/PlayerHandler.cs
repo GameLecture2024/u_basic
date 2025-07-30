@@ -16,6 +16,9 @@ public class PlayerHandler : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     private PlayerAnimatorController playerAnimatorController;
+
+    private float horizontal;
+
     // Awake함수
     private void Awake()
     {
@@ -72,19 +75,18 @@ public class PlayerHandler : MonoBehaviour
     {
         // 1. 플레이어의 입력을 받아야 합니다. A,D // 화살표 <- , ->  x의 좌표를 변경해야합니다.
         // 2. rigidbody.velocity 변경해서 이동을 구현한다.
+       
+        horizontal = Input.GetAxisRaw("Horizontal");
 
-        
-
-        float horizontal = Input.GetAxisRaw("Horizontal");
-
-        if(horizontal == 0)
+        // 최대 속도 변수를 만들고, 현재 속도와 이동 방향을 곱해서 그 값이 0 ~ 1값으로 반환되게 만드는 코드를 구현해보세요.
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            playerAnimatorController.PlayerMoveAnimation();
+           
+            horizontal *= 0.5f;
+            
         }
-        else
-        {
-            playerAnimatorController.PlayerTurnAnimation();
-        }
+
+        playerAnimatorController.PlayFloatAnimation("Speed", Mathf.Abs(horizontal)); // -1, 0, 1
 
         // 위에 있는 horizontal을 이용해서 vector2의 x값을 변경하는 코드를 만들어보세요
         // 멤버 변수로 이동 속도 변수를 하나 추가해서 vector의 현재 크기에 속도를 곱한 값으로 이동하도록 코드를 작성해보세요.
