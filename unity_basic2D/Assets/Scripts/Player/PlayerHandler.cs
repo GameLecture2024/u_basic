@@ -76,14 +76,13 @@ public class PlayerHandler : MonoBehaviour
         // 1. 플레이어의 입력을 받아야 합니다. A,D // 화살표 <- , ->  x의 좌표를 변경해야합니다.
         // 2. rigidbody.velocity 변경해서 이동을 구현한다.
        
-        horizontal = Input.GetAxisRaw("Horizontal");
+        //horizontal = Input.GetAxisRaw("Horizontal");  // -1, 0 , 1
+        horizontal = Input.GetAxis("Horizontal");    // -1 ~ 1
 
         // 최대 속도 변수를 만들고, 현재 속도와 이동 방향을 곱해서 그 값이 0 ~ 1값으로 반환되게 만드는 코드를 구현해보세요.
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-           
-            horizontal *= 0.5f;
-            
+        if (Input.GetKey(KeyCode.LeftShift))
+        {         
+            horizontal *= 0.5f;         
         }
 
         playerAnimatorController.PlayFloatAnimation("Speed", Mathf.Abs(horizontal)); // -1, 0, 1
