@@ -23,9 +23,11 @@ public class IntroButtonContainer : MonoBehaviour
         tut.SetActive(true);
     }
 
-    public void ButtonOption()
+    public void ButtonOption(GameObject opt)
     {
         Debug.Log("옵션 버튼이 활성화됩니다.");
+
+        opt.SetActive(true);
     }
 
     public void ButtonExit()
